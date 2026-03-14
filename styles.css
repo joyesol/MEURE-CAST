@@ -1,0 +1,331 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css");
+
+:root {
+  /* Colors */
+  --bg-color: #000000;
+  --surface-color: #1a1a1a;
+  --surface-hover: #2a2a2a;
+  --primary-color: #6208ea; /* Red accent, theatre feel */
+  --text-main: #ffffff;
+  --text-sub: #a0a0a0;
+  --border-color: #333333;
+
+  /* Typos */
+  --font-family:
+    "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, Roboto,
+    "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR",
+    "Malgun Gothic", sans-serif;
+
+  /* Spacing & Rounding */
+  --padding-std: 16px;
+  --radius-std: 12px;
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  background-color: #121212; /* Outer background to show the mobile frame on desktop */
+  font-family: var(--font-family);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Base App Wrapper */
+.recast-app {
+  width: 100%;
+  max-width: 440px;
+  height: 100vh;
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--padding-std) 20px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(12px);
+}
+
+.header__logo {
+  font-size: 24px;
+  font-weight: 800;
+  margin: 0;
+  color: var(--primary-color);
+  letter-spacing: -0.5px;
+}
+
+.header__search-btn {
+  background: var(--surface-color);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.header__search-btn:hover {
+  background: var(--surface-hover);
+  transform: scale(1.05);
+}
+
+/* main content scroll */
+.content {
+  flex: 1;
+  overflow-y: auto;
+  padding-bottom: 80px; /* space for nav */
+  scroll-behavior: smooth;
+}
+.content::-webkit-scrollbar {
+  display: none;
+}
+
+.home {
+  padding: 16px;
+}
+
+.section-title {
+  font-size: 20px;
+  margin: 30px 0 14px 0;
+  color: var(--text-main, white);
+  font-weight: 700;
+}
+
+/* 배너 슬라이더 */
+.banner-slider {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 10px;
+}
+
+.banner-slider::-webkit-scrollbar {
+  display: none;
+}
+
+/* 배너 카드 */
+.banner-card {
+  min-width: 400px;
+  height: 380px;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  flex-shrink: 0;
+  scroll-snap-align: start;
+}
+
+/* 이미지 */
+.banner-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 배너 텍스트 */
+.banner-info {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  color: white;
+  z-index: 2;
+}
+
+.banner-card::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 60%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+}
+
+.banner-tag {
+  background: #7b2cff;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  display: inline-block;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+/* 찜한 배우 */
+.favorite-actors {
+  display: flex;
+  gap: 18px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.favorite-actors::-webkit-scrollbar {
+  display: none;
+}
+
+.actor {
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.actor img {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--border-color, #333);
+}
+
+.actor p {
+  font-size: 12px;
+  margin-top: 8px;
+}
+
+/* 도슨트 카드 */
+.docent-card {
+  background: var(--surface-color, #111);
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 16px;
+  min-height: 150px;
+  border: 1px solid var(--border-color, #333);
+}
+
+.docent-card h3 {
+  font-size: 16px;
+  margin-top: 0;
+  margin-bottom: 12px;
+}
+
+.docent-card p,
+.docent-card li {
+  font-size: 14px;
+  color: var(--text-sub, #ddd);
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+.docent-card ul {
+  padding-left: 20px;
+  margin: 0;
+}
+
+/* 뮤지컬 슬라이드 */
+.musical-slider {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  scroll-snap-type: x mandatory;
+}
+.musical-slider::-webkit-scrollbar {
+  display: none;
+}
+
+.musical-card {
+  min-width: 140px;
+  scroll-snap-align: start;
+}
+
+.musical-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.musical-card p {
+  font-size: 14px;
+  margin-top: 8px;
+  font-weight: 600;
+}
+
+/* 캐스팅 카드 */
+.casting-card {
+  background: var(--surface-color, #111);
+  padding: 20px;
+  border-radius: 16px;
+  margin-bottom: 16px;
+  border: 1px solid var(--border-color, #333);
+}
+.casting-card h3 {
+  margin-top: 0;
+  margin-bottom: 4px;
+}
+
+.tag-text {
+  color: var(--primary-color, #9b5cff);
+  font-size: 13px;
+  margin: 6px 0 12px 0;
+  font-weight: 600;
+}
+.casting-card p:last-child {
+  font-size: 14px;
+  color: var(--text-sub, #ddd);
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+/* Nav Bar */
+.nav-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  background-color: rgba(26, 26, 26, 0.95);
+  backdrop-filter: blur(16px);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-top: 1px solid var(--border-color);
+  z-index: 100;
+}
+
+.nav-bar__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--text-sub);
+  font-weight: 500;
+  cursor: pointer;
+  flex: 1;
+  height: 100%;
+  transition: color 0.2s ease;
+}
+
+.nav-bar__item:hover {
+  color: var(--text-main);
+}
+
+.nav-bar__item--active {
+  color: var(--primary-color);
+}
+
+.nav-bar__item--active:hover {
+  color: var(--primary-color);
+}
